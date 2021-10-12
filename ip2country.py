@@ -9,7 +9,8 @@ def find_country(infile='crawler.csv', debug=False):
     handler = ipinfo.getHandler(access_token)
     outfile = infile.replace('.csv', "_countries.csv")
     df = pd.read_csv(infile)
-    ips = df['IP'].unique()
+    # ips = df['IP'].unique()
+    ips = df['IP']
     countries = set()
     ip_list, countries_list = list(), list()
     for idx, ip in enumerate(ips):
@@ -40,16 +41,7 @@ if __name__ == "__main__":
     print(f"Infile: {args.infile}")
 
     # we can assign infile to some file name we want to check
-
-    # infile = "crawler.csv"
-    # find_country(infile=infile, debug=False)
-
-    # infile = "uim.csv"
-    # find_country(infile=infile, debug=False)
-
-    # infile = "connectivity.csv"
-    # find_country(infile=infile, debug=False)
-
-    infile = "snapshot.csv"
-    find_country(infile=infile, debug=False)
+    infiles = ['crawler.csv', 'uim.csv', 'connectivity.csv', 'snapshot.csv']
+    for infile in infiles:
+        find_country(infile=infile, debug=False)
     print('Done')
